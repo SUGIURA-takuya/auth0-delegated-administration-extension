@@ -1,6 +1,5 @@
 {
   "title": "Delegated Administration Dashboard",
-  "codeUrl": "https://raw.githubusercontent.com/SUGIURA-takuya/auth0-delegated-administration-extension/build/bundle.js",
   "name": "auth0-delegated-admin",
   "version": "4.3.0",
   "author": "auth0",
