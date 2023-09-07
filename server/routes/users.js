@@ -499,15 +499,8 @@ export default (storage, scriptManager) => {
    * Get all devices for the user.
    */
   api.get('/:id/devices', verifyUserAccess('read:devices', scriptManager), (req, res, next) => {
-    req.auth0.deviceCredentials.getAll({ user_id: req.params.id}).then(devices1 => {
-      req.auth0.deviceCredentials.getAll({ user_id: req.params.id, type: "rotating_refresh_token" })
-      .then(async devices2 =>{
-        let devices = [...devices1, ...devices2]
-        const clients = await req.auth0.clients.getAll()
-        devices = devices.map(device =>{
-          return {...device,client_name:clients.find(client => client.client_id === device.client_id).name}})
-        return res.json({ devices })})
-    })
+    req.auth0.deviceCredentials.getAll({ user_id: req.params.id })
+      .then(devices => res.json({ devices }))
       .catch(next);
   });
 
